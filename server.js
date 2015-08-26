@@ -39,6 +39,10 @@ app.get('/random-user', checkAuthenticated, function(req, res){
     res.json(user);
 });
 
+app.get('/', checkAuthenticated, function(req, res){
+    res.send(req.user);
+});
+
 app.listen(3000, function(){
     console.log('App listening on localhost:3000')
 });
@@ -54,6 +58,7 @@ function authenticate(req, res, next){
     if (body.username !== user.username || body.password !== user.password){
         res.status(401).end('Username or password incorrect');
     }
+    req.user = user;
     next();
 }
 
