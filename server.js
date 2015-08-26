@@ -19,12 +19,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(expressJwt({ secret: jwtSecret }).unless({ path: [ '/login' ]}));
 
-app.get('/random-user', function(req, res){
-    var user = faker.helpers.userCard();
-    user.avatar = faker.image.avatar();
-    res.json(user);
-});
-
 app.post('/login', authenticate, function(req, res){
     var token = jwt.sign({
         username: user.username
@@ -35,8 +29,14 @@ app.post('/login', authenticate, function(req, res){
     });
 });
 
-app.get('/me', function(req, res){
+app.get('/me', checkAuthenticated, function(req, res){
     res.send(req.user);
+});
+
+app.get('/random-user', checkAuthenticated, function(req, res){
+    var user = faker.helpers.userCard();
+    user.avatar = faker.image.avatar();
+    res.json(user);
 });
 
 app.listen(3000, function(){
@@ -55,4 +55,12 @@ function authenticate(req, res, next){
         res.status(401).end('Username or password incorrect');
     }
     next();
+}
+
+function checkAuthenticated(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.status(401).end('Must be authenticated');
+    }
 }
