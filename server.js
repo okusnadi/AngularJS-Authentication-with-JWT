@@ -30,13 +30,6 @@ app.use(cors());
 jwtSecret = 'AzErTy';
 app.use(expressJwt({ secret: jwtSecret }).unless({path: ['/login']}));
 
-// setup routing
-app.use(function (err, req, res, next) {
-    if (err.name === 'UnauthorizedError') {
-        res.send(401, 'Must be authenticated...');
-    }
-});
-
 // init mongoose
 mongoose.connect('mongodb://localhost:27017/book_phone');
 
@@ -44,6 +37,7 @@ mongoose.connect('mongodb://localhost:27017/book_phone');
 models = require('./models');
 
 // import routing
+require('./routing/global');
 require('./routing/user');
 
 

@@ -14,10 +14,10 @@ exports.authenticate = function (req, res, next) {
 }
 
 
-exports.checkAuthenticated = function (req, res, next) {
+exports.authenticated = function (req, res, next) {
     if (req.user) {
         next();
     }
-    res.status(401).end('Must be authenticated');
+    res.status(401).send('Must be authenticated...');
 
 }
