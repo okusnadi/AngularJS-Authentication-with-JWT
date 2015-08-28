@@ -11,12 +11,6 @@ mongoose = require('mongoose');
 // lib requires
 verify = require('./utility/verify');
 
-// database
-user = {
-    username: 'user',
-    password: 'p'
-};
-
 // create the app
 app = express();
 
@@ -30,19 +24,15 @@ app.use(cors());
 jwtSecret = 'AzErTy';
 app.use(expressJwt({ secret: jwtSecret }).unless({path: ['/login']}));
 
-// init mongoose
-mongoose.connect('mongodb://localhost:27017/webApp');
-
 // import models
 models = require('./models');
+
+// init mongoose
+mongoose.connect('mongodb://localhost:27017/webApp');
 
 // import routing
 require('./routing/global');
 require('./routing/user');
-
-
-// verify new user
-console.log(new models.User());
 
 // run app
 app.listen(3000, function() {
