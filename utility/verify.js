@@ -26,9 +26,11 @@ exports.authenticate = function (req, res, next) {
 
 
 exports.authenticated = function (req, res, next) {
+
     if (req.user) {
         next();
+    } else {
+        res.status(401).send('Must be authenticated...');
     }
-    res.status(401).send('Must be authenticated...');
 
 };
