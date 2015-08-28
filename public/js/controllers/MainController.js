@@ -11,6 +11,7 @@ function MainCtrl(RandomUserFactory, UserFactory) {
     vm.getRandomUser = getRandomUser;
     vm.login = login;
     vm.logout = logout;
+    vm.message = null;
 
     // initialisation
     UserFactory.getUser().then(function success(response){
@@ -27,16 +28,19 @@ function MainCtrl(RandomUserFactory, UserFactory) {
         UserFactory.login(username, password).then(function success(response){
             vm.user = response.data.user;
             console.log(response.data.token);
+            vm.message = 'Success';
         }, handleError);
     }
 
     function logout(){
         UserFactory.logout();
         vm.user = null;
+        vm.message = null;
     }
 
     function handleError(response){
         console.log('Error: ' + response.data);
+        vm.message = response.data;
     }
 
 
