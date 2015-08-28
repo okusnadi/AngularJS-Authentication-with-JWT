@@ -6,7 +6,7 @@ expressJwt = require('express-jwt');
 jwt = require('jsonwebtoken');
 faker = require('faker');
 Promise = require('bluebird');
-mongoose = require('mongoose');
+mongoose = Promise.promisifyAll(require('mongoose'));
 
 // lib requires
 verify = require('./utility/verify');
