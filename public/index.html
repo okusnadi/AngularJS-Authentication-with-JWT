@@ -20,10 +20,12 @@
     <h2>Welcome {{ vm.user.username }}</h2>
     <button ng-click="vm.logout()">Logout</button>
     <br/>
+</div>
+
+<div>
     <button ng-click="vm.getRandomUser()">Get User</button>
     <pre ng-bind="vm.randomUser | json"></pre>
 </div>
-
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="app.js"></script>

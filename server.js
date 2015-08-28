@@ -1,71 +1,56 @@
-
+// general requires
 var express = require('express');
-var faker = require('faker');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');
+expressJwt = require('express-jwt');
+jwt = require('jsonwebtoken');
+faker = require('faker');
+Promise = require('bluebird');
+mongoose = require('mongoose');
 
-var jwtSecret = 'secret';
+// lib requires
+verify = require('./utility/verify');
 
-var user = {
+// database
+user = {
     username: 'user',
-    password: 'password'
-}
+    password: 'p'
+};
 
-var app = express();
+// create the app
+app = express();
 
-app.use(cors());
+// parse json data coming from client (used on login)
 app.use(bodyParser.json());
-app.use(expressJwt({ secret: jwtSecret }).unless({ path: [ '/login' ]}));
 
-app.post('/login', authenticate, function(req, res){
-    var token = jwt.sign({
-        username: user.username
-    }, jwtSecret);
-    res.send({
-        token: token,
-        user: user
-    });
-});
+// setup cors
+app.use(cors());
 
-app.get('/me', checkAuthenticated, function(req, res){
-    res.send(req.user);
-});
+// setup jwt
+jwtSecret = 'AzErTy';
+app.use(expressJwt({ secret: jwtSecret }).unless({path: ['/login']}));
 
-app.get('/random-user', checkAuthenticated, function(req, res){
-    var user = faker.helpers.userCard();
-    user.avatar = faker.image.avatar();
-    res.json(user);
-});
-
-app.get('/', checkAuthenticated, function(req, res){
-    res.send(req.user);
-});
-
-app.listen(3000, function(){
-    console.log('App listening on localhost:3000')
-});
-
-
-// Tools Functions
-
-function authenticate(req, res, next){
-    var body = req.body;
-    if (!body.username || !body.password){
-        res.status(400).end('Must provide username or password');
+// setup routing
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.send(401, 'Must be authenticated...');
     }
-    if (body.username !== user.username || body.password !== user.password){
-        res.status(401).end('Username or password incorrect');
-    }
-    req.user = user;
-    next();
-}
+});
 
-function checkAuthenticated(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.status(401).end('Must be authenticated');
-    }
-}
+// init mongoose
+mongoose.connect('mongodb://localhost:27017/book_phone');
+
+// import models
+models = require('./models');
+
+// import routing
+require('./routing/user');
+
+
+// verify new user
+console.log(new models.User());
+
+// run app
+app.listen(3000, function() {
+    console.log('server listening on :3000');
+});

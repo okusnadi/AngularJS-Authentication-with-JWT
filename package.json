@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/jechazelle/AngularJS-Authentication-with-JWT#readme",
   "devDependencies": {
+    "bluebird": "^2.9.34",
     "body-parser": "^1.13.3",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "express-jwt": "^3.0.1",
     "faker": "^3.0.1",
-    "jsonwebtoken": "^5.0.5"
+    "jsonwebtoken": "^5.0.5",
+    "mongoose": "^4.1.3"
   }
 }
