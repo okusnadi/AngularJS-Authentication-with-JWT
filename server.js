@@ -31,7 +31,7 @@ jwtSecret = 'AzErTy';
 app.use(expressJwt({ secret: jwtSecret }).unless({path: ['/login']}));
 
 // init mongoose
-mongoose.connect('mongodb://localhost:27017/book_phone');
+mongoose.connect('mongodb://localhost:27017/webApp');
 
 // import models
 models = require('./models');

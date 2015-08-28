@@ -1,0 +1,3 @@
+{"_id":{"$oid":"55c0999bbb7e6e3505155fa7"},"age":"40","job":"Financial assistant","lastname":"Shaima","name":"Barak","tel":"0123456789"}
+{"_id":{"$oid":"55c0999bbb7e6e3505155fa8"},"age":"32","job":"Express assistant","lastname":"Olmin","name":"Stinger","tel":"7893045839"}
+{"_id":{"$oid":"55c0999bbb7e6e3505155fa9"},"age":"37","job":"Test assistant","lastname":"Omnil","name":"Martin","tel":"8923458756"}

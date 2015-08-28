@@ -7,4 +7,4 @@ exports.schema = new mongoose.Schema({
         job: String,
         tel: { type: String, maxlength: 10 }
     }
-)
+);
