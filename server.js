@@ -11,6 +11,9 @@ mongoose = require('mongoose');
 // lib requires
 verify = require('./utility/verify');
 
+// init user
+user = {};
+
 // create the app
 app = express();
 
