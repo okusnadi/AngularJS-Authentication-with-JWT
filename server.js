@@ -2,11 +2,12 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+Promise = require('bluebird');
+mongoose = Promise.promisifyAll(require('mongoose'));
 expressJwt = require('express-jwt');
 jwt = require('jsonwebtoken');
 faker = require('faker');
-Promise = require('bluebird');
-mongoose = Promise.promisifyAll(require('mongoose'));
+
 
 // lib requires
 verify = require('./utility/verify');
@@ -16,6 +17,10 @@ user = {};
 
 // create the app
 app = express();
+
+// init mongoose
+mongoose.connect('mongodb://localhost:27017/webApp');
+
 
 // parse json data coming from client (used on login)
 app.use(bodyParser.json());
@@ -29,9 +34,6 @@ app.use(expressJwt({ secret: jwtSecret }).unless({path: ['/login']}));
 
 // import models
 models = require('./models');
-
-// init mongoose
-mongoose.connect('mongodb://localhost:27017/webApp');
 
 // import routing
 require('./routing/global');
