@@ -7,8 +7,10 @@ exports.authenticate = function (req, res, next) {
     var options = {username:body.username};
     var checkPassword = function (err, obj){
 
+        passwordEncrypt = crypt.encrypt(body.password);
+
         if (obj){
-            if (body.password !== obj.password) {
+            if (passwordEncrypt !== obj.password) {
                 return res.status(401).send('Username or password incorrect');
             }
             req.user = user;

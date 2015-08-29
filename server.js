@@ -2,6 +2,7 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+crypto = require('crypto');
 Promise = require('bluebird');
 mongoose = Promise.promisifyAll(require('mongoose'));
 expressJwt = require('express-jwt');
@@ -11,6 +12,7 @@ faker = require('faker');
 
 // lib requires
 verify = require('./utility/verify');
+crypt = require('./utility/crypt');
 
 // init user
 user = {};
