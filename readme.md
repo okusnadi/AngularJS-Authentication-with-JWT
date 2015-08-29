@@ -19,3 +19,8 @@ Import / Export DB
 
 + mongoexport -d webApp -c users -o mongoUser.json
 + mongoimport -d webApp -c users mongoUser.json
+
+User DB
+=======
+
++ username:martin / password: Pmartin
