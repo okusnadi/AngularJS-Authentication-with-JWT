@@ -1,9 +1,12 @@
 
 
 exports.login = function(req, res) {
+
     var token = jwt.sign({
         username: req.user.username
     }, jwtSecret);
+
+    console.log(user);
 
     res.json({
         token: token,

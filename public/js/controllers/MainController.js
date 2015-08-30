@@ -13,6 +13,9 @@ function MainCtrl(RandomUserFactory, UserFactory) {
     vm.logout = logout;
     vm.message = null;
 
+    vm.username = 'martin';
+    vm.password = 'Pmartin';
+
     // initialisation
     UserFactory.getUser().then(function success(response){
         vm.user = response.data;
@@ -27,7 +30,7 @@ function MainCtrl(RandomUserFactory, UserFactory) {
     function login(username, password){
         UserFactory.login(username, password).then(function success(response){
             vm.user = response.data.user;
-            console.log(response.data.token);
+            console.log(response.data);
             vm.message = 'Success';
         }, handleError);
     }

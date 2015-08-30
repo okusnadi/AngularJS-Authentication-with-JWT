@@ -1,0 +1,35 @@
+<div class="jumbotron">
+    <div class="container">
+
+        <br/><br/>
+
+        <div ng-show="Main.message">
+            <div class="alert alert-success" role="alert" ng-bind="Main.message">...</div>
+        </div>
+
+        <div ng-hide="Main.user">
+            <form ng-submit="Main.login(Main.username, Main.password)">
+                <label>Username: <input type="text" ng-model="Main.username" /></label><br/>
+                <label>Password: <input type="password" ng-model="Main.password" /></label><br/>
+                <button class="btn btn-primary" type="submit">Login</button>
+            </form>
+        </div>
+
+        <div ng-show="Main.user">
+            <h2>Welcome {{ Main.user.username }}</h2>
+            <button class="btn btn-primary" type="button" ng-click="Main.logout()">Logout</button>
+            <br/>
+        </div>
+
+        <br/>
+
+        <div>
+            <button class="btn btn-primary" type="button" ng-click="Main.getRandomUser()">Get User</button>
+            <br/><br/>
+            <pre ng-show="Main.randomUser" ng-bind="Main.randomUser | json"></pre>
+        </div>
+
+
+    </div>
+</div>
+

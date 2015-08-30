@@ -15,5 +15,9 @@
   ],
   "dependencies": {
     "angular": "~1.4.4"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.3.5",
+    "bootstrap-ios7": "~2.0.0"
   }
 }

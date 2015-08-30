@@ -3,34 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>AngularJS JWT</title>
+
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="bower_components/bootstrap-ios7/dist/css/bootstrap-theme.css" rel="stylesheet">-->
+
 </head>
-<body ng-controller="MainCtrl as vm">
+<body>
 
-<h1>Get Random User</h1>
+<div ng-include="'partials/header/header.html'"></div>
 
-<div>
-    <p ng-bind="vm.message"></p>
-</div>
+<div ng-controller="MainCtrl as Main" ng-include="'partials/content/content.html'"></div>
 
-<div ng-hide="vm.user">
-    <form ng-submit="vm.login(vm.username, vm.password)">
-        <label>Username: <input type="text" ng-model="vm.username" /></label><br/>
-        <label>Password: <input type="password" ng-model="vm.password" /></label><br/>
-        <button type="submit">Login</button>
-    </form>
-</div>
-
-<div ng-show="vm.user">
-    <h2>Welcome {{ vm.user.username }}</h2>
-    <button ng-click="vm.logout()">Logout</button>
-    <br/>
-</div>
-
-<div>
-    <button ng-click="vm.getRandomUser()">Get User</button>
-    <pre ng-bind="vm.randomUser | json"></pre>
-</div>
-
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap-ios7/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="app.js"></script>
 
