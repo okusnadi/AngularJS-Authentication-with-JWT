@@ -17,9 +17,11 @@ function MainCtrl(RandomUserFactory, UserFactory) {
     vm.password = 'Pmartin';
 
     // initialisation
-    UserFactory.getUser().then(function success(response){
-        vm.user = response.data;
-    });
+    vm.initialisation = function(){
+        UserFactory.getUser().then(function success(response){
+            vm.user = response.data;
+        });
+    }
 
     function getRandomUser(){
         RandomUserFactory.getUser().then(function success(response){
@@ -32,6 +34,7 @@ function MainCtrl(RandomUserFactory, UserFactory) {
             vm.user = response.data.user;
             console.log(response.data);
             vm.message = 'Success';
+            vm.initialisation();
         }, handleError);
     }
 
@@ -45,6 +48,5 @@ function MainCtrl(RandomUserFactory, UserFactory) {
         console.log('Error: ' + response.data);
         vm.message = response.data;
     }
-
 
 };

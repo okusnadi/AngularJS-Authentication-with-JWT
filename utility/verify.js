@@ -13,7 +13,6 @@ exports.authenticate = function (req, res, next) {
             if (passwordEncrypt !== obj.password) {
                 return res.status(401).send('Username or password incorrect');
             }
-            console.log(obj);
             req.user = obj;
             next();
         } else {
