@@ -9,20 +9,15 @@ expressJwt = require('express-jwt');
 jwt = require('jsonwebtoken');
 faker = require('faker');
 
-
 // lib requires
 verify = require('./utility/verify');
 crypt = require('./utility/crypt');
-
-// init user
-user = {};
 
 // create the app
 app = express();
 
 // init mongoose
 mongoose.connect('mongodb://localhost:27017/webApp');
-
 
 // parse json data coming from client (used on login)
 app.use(bodyParser.json());

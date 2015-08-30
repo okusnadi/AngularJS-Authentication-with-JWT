@@ -6,7 +6,7 @@ exports.login = function(req, res) {
         username: req.user.username
     }, jwtSecret);
 
-    console.log(user);
+    user = req.user;
 
     res.json({
         token: token,
